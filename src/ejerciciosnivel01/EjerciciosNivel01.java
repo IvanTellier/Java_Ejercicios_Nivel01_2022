@@ -74,6 +74,29 @@ public class EjerciciosNivel01 {
         }
         return true;
     }
+    
+    /**
+     * Convirte una frase en acrónimo
+     * @param frase la frase a convertir en acrónimo en mayúsculas
+     * @return el Acrónimo en mayúsculas
+     */
+    public String acronimo(String frase){
+        //Suponemos que por lo menos hay una letra en la frase
+        frase = frase.toUpperCase();
+        String palabras[] = frase.split(" ");
+        String resultado = "";
+        for(int i = 0; i < palabras.length; i++){
+            if (!(palabras[i].equals("Y") || palabras[i].equals("E") || palabras[i].equals("DE") || palabras[i].equals("LA") || palabras[i].equals("LAS"))){
+            resultado = resultado + palabras[i].charAt(0);
+            }
+        }
+        
+        return resultado;
+    }
+    
+    //public String anagrama (String frase)
+    
+    
     public static void main(String[] args) {
         int[] numeros = {99,37,7,54,13};
         int[] numeros2 = {-1,100,8,84,103,100005,77};
@@ -86,7 +109,11 @@ public class EjerciciosNivel01 {
         System.out.println(e.esPalindromo("Acaso hubo buhos acá"));
         
         System.out.println("Isograma Pájaro:" + e.esIsograma("Pájaro"));
-         System.out.println("Isograma Tijeras:" + e.esIsograma("Tijeras"));
+        System.out.println("Isograma Tijeras:" + e.esIsograma("Tijeras"));
+        
+        System.out.println("acronimo de Alta Velocidad Española: " + e.acronimo("Alta Velocidad Española "));
+        System.out.println("acronimo de Objeto Volador No Identificado: " + e.acronimo("Objeto Volador No Identificado "));
+        System.out.println("acronimo de Tecnología de la Información y de las Comunicaciones: " + e.acronimo("Tecnología de la Información y de las Comunicaciones"));
     }
     
 }
