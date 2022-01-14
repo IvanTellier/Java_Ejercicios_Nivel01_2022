@@ -94,7 +94,96 @@ public class EjerciciosNivel01 {
         return resultado;
     }
     
-    //public String anagrama (String frase)
+    /**
+     *  codigo sacado de la pagina "lawebdelprogramador"
+     * @param frase
+     * @return 
+     */
+    public boolean esAnagrama (String frase){
+        
+        String palabra1 = "amor";
+        String palabra2 = "mora";
+ 
+    //valida si tienen el mismo tamaño
+    if(palabra1.length() == palabra2.length()){
+ 
+    //recorre el largo de la primera palabra
+     for(int i = 0; i < palabra1.length(); i++){
+ 
+    //si la segunda palabra no contiene algun caracter de la primera, no es un anagrama y termina
+    if(!palabra2.contains(String.valueOf(palabra1.charAt(i)))){
+      return false;
+        }
+     }
+    //Si nada falló hasta aqui, probablemente es un anagrama
+    return true;
+    }
+    else{
+     return false;
+        }
+    }
+    
+    /**
+     *  codigo de Jorge Cisneros
+     * 
+     * @param palabra1
+     * @param palabra2
+     * @return 
+     */
+    
+    public boolean sonAnagrama (String palabra1, String palabra2){
+    
+        palabra1 = limpiaFrase(palabra1);
+        palabra2 = limpiaFrase(palabra2);
+        
+        if(palabra1.length() != palabra2.length()){
+        return false; // tienen distinto nº de letras, luego 
+        }
+        else{
+            for (int i=0; i<palabra1.length(); i++){
+                int j = 0;
+                while (j<palabra2.length() && (palabra1.charAt(i) != palabra2.charAt(j))){
+                    j++;
+                }
+                
+                if (j == palabra2.length()){ // sale del while porque la letra no esta
+                    return false;
+                }
+                
+                palabra2 = palabra2.substring(0, j) + palabra2.substring(j);
+            }
+            
+            if (palabra2.length() == 0){
+                return true;
+            }
+            
+            else{
+            return false;
+            }
+        }
+    }
+    
+    public boolean sonAnagramaV2 (String palabra1, String palabra2){
+    
+        palabra1 = limpiaFrase(palabra1);
+        palabra2 = limpiaFrase(palabra2);
+        
+        if(palabra1.length() != palabra2.length()){
+        return false; // tienen distinto nº de letras, luego 
+        }
+        else{
+            for (int i=0; i<palabra1.length(); i++){
+                if (palabra2.contains("" + palabra1.charAt(i))){
+                    palabra2 = palabra2.replaceFirst("" + palabra1.charAt(i), " ");
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     
     
     public static void main(String[] args) {
@@ -114,6 +203,11 @@ public class EjerciciosNivel01 {
         System.out.println("acronimo de Alta Velocidad Española: " + e.acronimo("Alta Velocidad Española "));
         System.out.println("acronimo de Objeto Volador No Identificado: " + e.acronimo("Objeto Volador No Identificado "));
         System.out.println("acronimo de Tecnología de la Información y de las Comunicaciones: " + e.acronimo("Tecnología de la Información y de las Comunicaciones"));
+        
+        System.out.println("Anagrama Amor:" + e.esAnagrama("amor, mora"));
+        System.out.println(e.sonAnagrama("amor", "mora"));
+        System.out.println(e.sonAnagramaV2("amor", "mora"));
     }
+    
     
 }
